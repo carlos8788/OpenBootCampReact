@@ -27,3 +27,7 @@ Las SPAs tienen muchas ventajas, pero también tienen algunos inconvenientes, co
 dificultad de manejar el SEO (Search Engine Optimization) y la necesidad de manejar 
 el estado de la aplicación en el lado del cliente. Es importante evaluar estos pros 
 y contras al decidir si una SPA es la elección correcta para tu aplicación.
+
+<!-- Clase 4 -->
+
+Hooks

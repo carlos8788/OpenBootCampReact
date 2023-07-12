@@ -2,6 +2,9 @@
 import './styles/task.scss'
 import GreetingStyled from './components/pure/greetingStyled'
 import Clock from './components/container/Clock'
+
+import TaskListComponent from './components/container/task_list';
+import Father from './components/container/father';
 function App() {
 
   return (
@@ -15,8 +18,10 @@ function App() {
       <h3>Contenido Children</h3>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam, beatae.</p>
     </Ejemplo4> */}
-        <GreetingStyled name={'Luis'} />
-        <Clock />
+        {/* <GreetingStyled name={'Luis'} /> */}
+        {/* <Clock /> */}
+        {/* <TaskListComponent/> */}
+        <Father/>
       </main>
     </>
   )

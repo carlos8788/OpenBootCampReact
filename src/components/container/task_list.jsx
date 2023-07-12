@@ -21,18 +21,35 @@ const TaskListComponent = () => {
         }
     }, [tasks])
 
-    const changeComplete = (id) => {
-        console.log('TODO: Cambiar estado de una tarea')
+    const completeTask = (task) => {
+        console.log('Complete this task: ', task);
+        const index = tasks.indexOf(task)
+        const tempTask = [...tasks]
+        tempTask[index].completed = !tempTask[index].completed
+        setTasks(tempTask)
+
     }
 
+    const deleteTask = (task) => {
+        setTasks(tasks.filter(t => t !== task))
+    }
+    const addTask = (task) => {
+         
+        const tempTask = [...tasks]
+        tempTask.push(task)
+        setTasks(tempTask)
+        // console.log(task)
+    }
+
+
     return (
-        <div>
+        <div className='d-flex justify-content-center'>
             <div className="col-6 m-auto">
                 <div className="card bg-success">
                     <div className="card-header p-3 text-light">
                         <h5>Your Tasks:</h5>
                     </div>
-                    <div className="card-body" data-mdb-perfect-scrollbar='true' style={{ position: 'relative', height: '400px' }}>
+                    <div className="card-body my-5" data-mdb-perfect-scrollbar='true' style={{ position: 'relative', height: 'auto' }}>
                         <table>
                             <thead>
                                 <tr>
@@ -46,18 +63,18 @@ const TaskListComponent = () => {
                                 {/* <TaskComponent task={defaultTask}></TaskComponent>
                                 <TaskComponent task={defaultTask2}></TaskComponent>
                                 <TaskComponent task={defaultTask3}></TaskComponent> */}
-                                {tasks.map((task, key) =>{
-                                    return(
-                                        <TaskComponent task={task} key={key}/>
+                                {tasks.map((task, key) => {
+                                    return (
+                                        <TaskComponent complete={completeTask} task={task} key={key} deleteTask={deleteTask} />
                                     )
                                 })}
                             </tbody>
                         </table>
+                        <TaskForm add={addTask} />
                     </div>
                 </div>
             </div>
 
-            <TaskForm/>
 
         </div>
     );

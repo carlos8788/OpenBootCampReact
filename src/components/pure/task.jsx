@@ -5,7 +5,7 @@ import { LEVELS } from '../../models/levels.enum';
 
 // import '../../styles/styles.scss';
 
-const TaskComponent = ({ task }) => {
+const TaskComponent = ({ task, complete, deleteTask }) => {
 
     useEffect(() => {
         console.log('Created task');
@@ -27,9 +27,25 @@ const TaskComponent = ({ task }) => {
         }
     }
 
+
+
     const taskIconCompleted = (task) => {
-        console.log(task);
-        return (task ? <i className="bi-toggle-on"></i> : <i className="bi-toggle-off"></i>)
+        // console.log(task);
+        // return (task.completed ? <i onClick={()=>complete(task)} className="bi-toggle-on"></i> : <i onClick={()=>complete(task)} className="bi-toggle-off"></i>)
+        return (
+            <>
+                <i
+                    onClick={() => complete(task)}
+                    className={`task-action text-center mx-3 ${task.completed ? "bi-toggle-on" : "bi-toggle-off"}`}>
+                </i>
+                <i
+                    onClick={() => deleteTask(task)}
+                    className='bi-trash task-action ' style={{ color: 'red' }}>
+
+                </i>
+            </>
+
+        )
     }
 
     return (
@@ -43,8 +59,8 @@ const TaskComponent = ({ task }) => {
             <td className='align-middle'>
                 <span className='ms-2'>{taskLevelBadge()}</span>
             </td>
-            <td className='align-middle'>
-                {taskIconCompleted(task.completed)}
+            <td className='align-middle text-center'>
+                {taskIconCompleted(task)}
             </td>
         </tr>
         // <div>
@@ -75,7 +91,9 @@ const TaskComponent = ({ task }) => {
 
 
 TaskComponent.propTypes = {
-    task: PropTypes.instanceOf(Task)
+    task: PropTypes.instanceOf(Task).isRequired,
+    complete: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired
 };
 
 
